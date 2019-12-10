@@ -18,6 +18,11 @@
         </div>
         {% endfor %}
     {% endif %}
+    {% if secret_message %}
+	<div class="alert alert-warning alert=dismissible fade show" role="alert">
+		<strong>{{secret_message}}</strong>
+	</div>
+    {% endif %}
   {% endblock %}
 
 <h3 class="h3" id="head_banner">{% trans "E-mail Addresses" %}</h3>
@@ -77,9 +82,8 @@
       {{ form.as_p }}
       <button class="btn btn-outline-primary" name="action_add" type="submit">{% trans "Add E-mail" %}</button>
   </form>
-
   
-  <h3 class="h3" id="head_banner">{% trans "secrets" %} <button class="btn btn-primary">Add</button></h3>
+  <h3 class="h3" id="head_banner">{% trans "secrets" %} <a class="btn btn-primary" href="{% url 'account_secret_store' %}">{% trans "Add" %}</a></h3>
 
 {% endblock %}
 
