@@ -1,6 +1,6 @@
 <html>
 <head>
-
+ {% load i18n %}
  {% load static %}
 
     <link rel="stylesheet" href="{% static 'account/Css/Custom-Account-Styles.css' %}" type = "text/css"/>
@@ -27,16 +27,13 @@
 
     <!-- Navigation -->
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">Password manager</a>
+	 <a class="navbar-brand" href="{% url 'account_start_page' %}">Password manager</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
       
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Actions
@@ -48,13 +45,41 @@
             </li>
           </ul>
         </div>
+	{% if user.is_authenticated %}
+	<a class="btn btn-primary" href="{% url 'account_secret_page' %}">{% trans "Secret page" %}</a>
+	{% endif %}
       </nav>
 
     {% block content%}
     
 	    {% block messages %}
         {% endblock %}
-    
+	<div class="alert alert-primary" role="alert">
+	  	How about using card to introduce this password manager:)
+	</div>
+	<div class="row">
+		<div class="card" style="width: 18rem; margin-right:10px">
+	  		<div class="card-header">Register</div>
+	    		<li class="list-group-item">Click register link in dropdown menu of navbar. Confirm with email then you can login!</li>
+		</div>
+		<div class="card" style="width: 18rem;  margin-right:10px">
+	  		<div class="card-header">Secret page</div>
+	    		<li class="list-group-item">Only if you log in, you can see Secret page button in navbar!</li>
+		</div>
+		<div class="card" style="width: 18rem;  margin-right:10px">
+	  		<div class="card-header">View secret</div>
+	    		<li class="list-group-item">In secret page, on top of page, click the website you want to know about, then the stored secret would be sent to your email!</li>
+		</div>
+		<div class="card" style="width: 18rem;  margin-right:10px">
+	  		<div class="card-header">Edit secret</div>
+	    		<li class="list-group-item">At the same time as you click the button, you would redirect to a form page. You need to input all the data including unchanged one!</li>
+		</div>
+		<div class="card" style="width: 18rem;  margin-right:10px">
+	  		<div class="card-header">Add secret</div>
+	    		<li class="list-group-item">A blue button near to second header in Secret page, just click it then you can see the form page!</li>
+		</div>
+	</div>
+	
     {% endblock %}
     
     {% block content_extra %}

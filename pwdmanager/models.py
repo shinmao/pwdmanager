@@ -10,4 +10,16 @@ class Secret(models.Model):
     notes = models.CharField(max_length=300)
     build_date = models.DateTimeField('date built')
     def __str__(self):
-        return self.name
+        return self.website
+    def get_site(self):
+        return self.website
+    def get_username(self):
+        return self.username
+    def get_email(self):
+        return self.email
+    def get_password(self):
+        return self.password
+    def get_notes(self):
+        return self.notes
+    def get_build_date(self):
+        return self.build_date

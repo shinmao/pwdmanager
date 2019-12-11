@@ -21,6 +21,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/start_page', views.start_page, name="account_start_page"),
+    path('accounts/secret_page', views.secret_page, name="account_secret_page"),
     path('accounts/secret_store', views.secret_store, name="account_secret_store"),
+    path('accounts/secret_edit/<int:secret_id>/', views.secret_edit, name="account_secret_edit"),
     url(r'^accounts/', include('allauth.urls')),
 ]
