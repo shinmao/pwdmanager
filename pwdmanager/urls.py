@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url, include
+from django.conf.urls import url, include, handler404
 
 from . import views
 
@@ -24,6 +24,9 @@ urlpatterns = [
     path('accounts/start_page', views.start_page, name="account_start_page"),
     path('accounts/secret_page', views.secret_page, name="account_secret_page"),
     path('accounts/secret_store', views.secret_store, name="account_secret_store"),
+    path('accounts/secret_view/<int:secret_id>/', views.secret_view, name="account_secret_view"),
     path('accounts/secret_edit/<int:secret_id>/', views.secret_edit, name="account_secret_edit"),
     url(r'^accounts/', include('allauth.urls')),
 ]
+
+handler404 = views.handler404
